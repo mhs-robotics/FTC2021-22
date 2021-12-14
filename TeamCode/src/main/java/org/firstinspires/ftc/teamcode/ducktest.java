@@ -12,12 +12,13 @@ import org.openftc.easyopencv.OpenCvCameraFactory;
 public class  ducktest extends OpMode {
 
     OpenCvCamera webcam; // webcam object
-    DuckDetector detector; // duck pos object 0 left 1 middle 2 right
+    DuckDetector detector = new DuckDetector(telemetry); // duck pos object 0 left 1 middle 2 right
 
     @Override
     public void init() {
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName()); // creates the webcam object
         webcam = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId); // gets the physical webcam from the hardwaremap
+        webcam.setPipeline(detector);
     }
 
     @SuppressLint("DefaultLocale")
