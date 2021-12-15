@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.*;
 import com.qualcomm.robotcore.hardware.*;
 
 @TeleOp
-public class mecanumTest extends OpMode {
+public class OpModeMecanum extends OpMode {
   public static DcMotor motorFrontLeft;
   public static DcMotor motorBackLeft;
   public static DcMotor motorFrontRight;
