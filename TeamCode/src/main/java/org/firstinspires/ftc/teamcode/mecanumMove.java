@@ -11,15 +11,15 @@ public abstract class mecanumMove extends OpMode{
 
     @Override
     public void init() {
-        telemetry.addData("Status", "Mecanum Move Initiated");
-
-        motorFrontLeft = hardwareMap.dcMotor.get("FrontL");
-        motorBackLeft = hardwareMap.dcMotor.get("BackL");
-        motorFrontRight = hardwareMap.dcMotor.get("FrontR");
-        motorBackRight = hardwareMap.dcMotor.get("BackR");
+        motorFrontLeft = hardwareMap.get(DcMotor.class, "FrontL");
+        motorBackLeft = hardwareMap.get(DcMotor.class, "BackL");
+        motorFrontRight = hardwareMap.get(DcMotor.class, "FrontR");
+        motorBackRight = hardwareMap.get(DcMotor.class, "BackR");
 
         motorFrontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
         motorFrontRight.setDirection(DcMotorSimple.Direction.REVERSE);
+
+        telemetry.addData("Status", "Mecanum Move Initiated");
     }
 
     public static void move(double x, double y, double rx){
@@ -29,5 +29,12 @@ public abstract class mecanumMove extends OpMode{
         motorBackLeft.setPower((y - x + rx) / denominator);
         motorFrontRight.setPower((y - x - rx) / denominator);
         motorBackRight.setPower((y + x - rx) / denominator);
+    }
+
+    public static void moveRotations(double speed, double targetRotation, DcMotor motor){
+        targetRotation = motor.getCurrentPosition() + targetRotation;
+        motor.setPower(speed);
+        while(motor.getCurrentPosition() < targetRotation){ }
+        motor.setPower(0);
     }
 }
