@@ -25,9 +25,5 @@ public class OpModeMecanum extends OpMode {
     double rx = gamepad1.right_stick_x;
 
     mecanumMove.move(x, y, rx);
-
-    if(gamepad1.a){
-      mecanumMove.moveRotations(1, 3, motorFrontLeft);
-    }
   }
 }
