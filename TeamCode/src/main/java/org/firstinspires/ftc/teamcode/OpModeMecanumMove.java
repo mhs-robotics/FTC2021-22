@@ -3,13 +3,13 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.*;
 import com.qualcomm.robotcore.hardware.*;
 
-@TeleOp
-public class OpModeMecanum extends OpMode {
-  public static DcMotor motorFrontLeft;
-  public static DcMotor motorBackLeft;
-  public static DcMotor motorFrontRight;
-  public static DcMotor motorBackRight;
-  public double speed = .7;
+@TeleOp(name = "OpMode Movement")
+public class OpModeMecanumMove extends OpMode {
+  static DcMotor motorFrontLeft;
+  static DcMotor motorBackLeft;
+  static DcMotor motorFrontRight;
+  static DcMotor motorBackRight;
+  double speed = .7;
 
   @Override
   public void init() {
@@ -31,8 +31,8 @@ public class OpModeMecanum extends OpMode {
     double x = gamepad1.left_stick_x;
     double rx = gamepad1.right_stick_x;
 
-    if(Math.abs(x) < .3){x = 0;}
-    if(Math.abs(y) < .3){y = 0;}
+    if(Math.abs(x) < .2){x = 0;}
+    if(Math.abs(y) < .2){y = 0;}
 
     telemetry.addData("X", x);
     telemetry.addData("Y", y);
