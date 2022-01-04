@@ -29,7 +29,7 @@ public class OpModeMecanumMove extends OpMode {
   public void loop(){
     double y = -gamepad1.left_stick_y;
     double x = gamepad1.left_stick_x;
-    double rx = gamepad1.right_stick_x;
+    double r = gamepad1.right_stick_x;
 
     if(Math.abs(x) < .2){x = 0;}
     if(Math.abs(y) < .2){y = 0;}
@@ -38,11 +38,15 @@ public class OpModeMecanumMove extends OpMode {
     telemetry.addData("Y", y);
     telemetry.update();
 
-    double denominator = Math.max(Math.abs(y) + Math.abs(x) + Math.abs(rx), 1);
-    double frontLeftPower = (y + x + rx) * speed / denominator;
-    double backLeftPower = (y - x + rx) * speed / denominator;
-    double frontRightPower = (y - x - rx) * speed / denominator;
-    double backRightPower = (y + x - rx) * speed / denominator;
+    move(x, y, r, speed);
+  }
+
+  static void move(double x, double y, double r, double speed){
+    double denominator = Math.max(Math.abs(y) + Math.abs(x) + Math.abs(r), 1);
+    double frontLeftPower = (y + x + r) * speed / denominator;
+    double backLeftPower = (y - x + r) * speed / denominator;
+    double frontRightPower = (y - x - r) * speed / denominator;
+    double backRightPower = (y + x - r) * speed / denominator;
 
     motorFrontLeft.setPower(frontLeftPower);
     motorBackLeft.setPower(backLeftPower);
