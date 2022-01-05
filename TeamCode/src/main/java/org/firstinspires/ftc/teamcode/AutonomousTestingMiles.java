@@ -1,9 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.eventloop.opmode.*;
+import com.qualcomm.robotcore.hardware.*;
 
 @Autonomous(name = "Autonomous Testing Miles")
 public class AutonomousTestingMiles extends LinearOpMode{
@@ -24,30 +22,18 @@ public class AutonomousTestingMiles extends LinearOpMode{
 
         waitForStart();
 
-        move(1, 1, 0);
+        moveSeconds(1, 1, 0, 1000);
 
-        sleep(1000);
+        moveSeconds(1, 0, 0, 1000);
 
-        move(1, 0, 0);
+        moveSeconds(0, -1, 0, 1800);
 
-        sleep(1000);
+        moveSeconds(-1, 0, 0, 1000);
 
-        move(0, -1, 0);
-
-        sleep(1800);
-
-        move(-1, 0, 0);
-
-        sleep(1000);
-
-        move(-1, 1, 0);
-
-        sleep(1000);
-
-        move(0, 0, 0);
+        moveSeconds(-1, 1, 0, 1000);
     }
 
-    static void move(double x, double y, double r){
+    void moveSeconds(double x, double y, double r, int time){
         double denominator = Math.max(Math.abs(y) + Math.abs(x) + Math.abs(r), 1);
         double frontLeftPower = (y + x + r) / denominator;
         double backLeftPower = (y - x + r) / denominator;
@@ -58,5 +44,12 @@ public class AutonomousTestingMiles extends LinearOpMode{
         motorBackLeft.setPower(backLeftPower);
         motorFrontRight.setPower(frontRightPower);
         motorBackRight.setPower(backRightPower);
+
+        sleep(time);
+
+        motorFrontLeft.setPower(0);
+        motorBackLeft.setPower(0);
+        motorFrontRight.setPower(0);
+        motorBackRight.setPower(0);
     }
 }
