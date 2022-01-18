@@ -9,6 +9,7 @@ public class AutonomousTestingMiles extends LinearOpMode{
     static DcMotor motorBackLeft;
     static DcMotor motorFrontRight;
     static DcMotor motorBackRight;
+    static Servo topMotor;
 
     @Override
     public void runOpMode() {
@@ -17,20 +18,16 @@ public class AutonomousTestingMiles extends LinearOpMode{
         motorFrontRight = hardwareMap.get(DcMotor.class, "front_right_motor");
         motorBackRight = hardwareMap.get(DcMotor.class, "back_right_motor");
 
+        topMotor = hardwareMap.get(Servo.class, "back_servo");
+
         motorFrontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
         motorBackLeft.setDirection(DcMotorSimple.Direction.REVERSE);
 
         waitForStart();
 
-        moveSeconds(1, 1, 0, 1000);
-
-        moveSeconds(1, 0, 0, 1000);
-
-        moveSeconds(0, -1, 0, 1800);
-
-        moveSeconds(-1, 0, 0, 1000);
-
-        moveSeconds(-1, 1, 0, 1000);
+        for(int x = 0; x < 5; x ++){
+            getBoxes();
+        }
     }
 
     void moveSeconds(double x, double y, double r, int time){
@@ -51,5 +48,37 @@ public class AutonomousTestingMiles extends LinearOpMode{
         motorBackLeft.setPower(0);
         motorFrontRight.setPower(0);
         motorBackRight.setPower(0);
+
+        sleep(10);
+    }
+
+    void getBoxes(){
+        moveSeconds(1, 0, 0, 200);
+
+        moveSeconds(0, -1, 0, 450);
+
+        topMotor.setPosition(10);
+        sleep(1000);
+        topMotor.setPosition(-10);
+
+        moveSeconds(0, 1, 0, 450);
+
+        moveSeconds(-1, 0, 0, 200);
+
+        moveSeconds(0, 1, 0, 900);
+
+        moveSeconds(0, 0, 1, 840);
+
+        moveSeconds(0, -1, 0, 500);
+
+        topMotor.setPosition(10);
+        sleep(1000);
+        topMotor.setPosition(-10);
+
+        moveSeconds(0, 1, 0, 500);
+
+        moveSeconds(0, 0, -1, 840);
+
+        moveSeconds(0, -1, 0, 900);
     }
 }
