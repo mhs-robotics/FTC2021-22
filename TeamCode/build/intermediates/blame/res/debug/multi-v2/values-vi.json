@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/felix/Desktop/FtcRobotController-master/TeamCode/build/intermediates/incremental/mergeDebugResources/merged.dir/values-vi/values-vi.xml",
+            "outputFile": "/Users/felix/Documents/github/FTC2021-22/TeamCode/build/intermediates/incremental/mergeDebugResources/merged.dir/values-vi/values-vi.xml",
             "map": [
                 {
                     "source": "/Users/felix/.gradle/caches/transforms-2/files-2.1/bf96d2b5a86ecd602a621e7e96856420/appcompat-1.2.0/res/values-vi/values-vi.xml",

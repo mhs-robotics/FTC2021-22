@@ -10,7 +10,7 @@ import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
 
 @Autonomous(name = "ducktest2")
-public class ducktest2 extends LinearOpMode {
+public class ComputerVisionTest extends LinearOpMode {
     OpenCvCamera webcam; // webcam object
     DuckDetector detector = new DuckDetector(telemetry);
 
